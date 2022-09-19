@@ -252,6 +252,18 @@ function displayOperationEquals() {
 
 
 function backSpace() {
+    //if equalsPressed
+    if (equalsPressed) {
+        //clear everything
+        clearEverything();
+        //set equalsPressed to false
+        equalsPressed = false;
+        //set display to display 0
+        const display = document.querySelector(".display");
+        display.textContent = globalValue1;
+        return;
+        
+    }
     //store ".display" div in display variable
     const display = document.querySelector(".display");
     //if display text is 0, return without doing anything
@@ -274,6 +286,18 @@ function backSpace() {
 }
 
 function resetCurrentNumber() {
+     //if equalsPressed
+     if (equalsPressed) {
+        //clear everything
+        clearEverything();
+        //set equalsPressed to false
+        equalsPressed = false;
+        //set display to display 0
+        const display = document.querySelector(".display");
+        display.textContent = globalValue1;
+        return;
+        
+    }
     //store ".display" div in display variable
     const display = document.querySelector(".display");
     //create variable resetNum;
