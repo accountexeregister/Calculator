@@ -88,10 +88,20 @@ function displayOperator() {
 
 }
 
+function roundOff(num) {
+    //multiply the num by 10000000000
+    num = num * 10000000000;
+    //round the number
+    num = Math.round(num);
+    //return the number divided by 10000000000
+    return num / 10000000000;
+}
 function displayOperation() {
     //executes operate(globalOperator, globalValue1, globalValue2)
     //and store it in variable result
     let result = operate(globalOperator, +globalValue1, +globalValue2);
+    //round off the result
+    result = roundOff(result);
     //clear display and set the text content of display to result
     clearDisplay();
     document.querySelector(".display").textContent = result;
