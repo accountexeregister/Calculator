@@ -1,3 +1,8 @@
+//create global variable globalValue1 to store first number
+let globalValue1 = "";
+//create global variable globalValue2 to store second number
+let globalValue2 = "";
+
 function add(value1, value2) {
     //return value1 + value2
     return +value1 + +value2;
@@ -36,6 +41,8 @@ function operate(operator, value1, value2) {
 function displayNumber() {
     //get and store "display" div in display variable
     const display = document.querySelector(".display");
+    //append text context of button (which is a number) to globalValue1
+    globalValue1 += this.textContent;
     //append text content of button (which is a number) to current text content
     //of display
     display.textContent += this.textContent;
