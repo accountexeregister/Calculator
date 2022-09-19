@@ -108,12 +108,20 @@ function roundOff(num) {
 function displayOperation() {
     //if either globalOperator, globalValue1 or globalValue2 is empty
     //return without doing anything
-    if (!globalOperator || !globalValue1 || !globalValue2) {
+    if (!globalOperator || !globalValue1) {
         return;
     }
-    //executes operate(globalOperator, globalValue1, globalValue2)
+    //initialise result variable
+    let result;
+    //if globalValue2 is empty, execute operate(globalOperator, globalValue1, globalValue1)
     //and store it in variable result
-    let result = operate(globalOperator, +globalValue1, +globalValue2);
+    if (!globalValue2) {
+        result = operate(globalOperator, +globalValue1, +globalValue1);
+    } else {
+    //else executes operate(globalOperator, globalValue1, globalValue2)
+    //and store it in variable result
+        result = operate(globalOperator, +globalValue1, +globalValue2);
+    }
     //clear display 
     clearDisplay();
     //if result is infinity (result obtained by dividing by zero)
