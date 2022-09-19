@@ -114,11 +114,18 @@ function displayOperation() {
     //executes operate(globalOperator, globalValue1, globalValue2)
     //and store it in variable result
     let result = operate(globalOperator, +globalValue1, +globalValue2);
-    //round off the result
-    result = roundOff(result);
-    //clear display and set the text content of display to result
+    //clear display 
     clearDisplay();
-    document.querySelector(".display").textContent = result;
+    //if result is infinity (result obtained by dividing by zero)
+    //display LOL
+    if (result === Infinity) {
+        document.querySelector(".display").textContent = "LOL";
+    } //else set the text content of display to result
+    else {
+        //round off the result
+        result = roundOff(result);
+        document.querySelector(".display").textContent = result;
+    }
     //set globalOperator back to empty string
     globalOperator = "";
     //set isNotFirstOperation to true
