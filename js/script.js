@@ -75,11 +75,11 @@ function generateInputButtons() {
     const divideButton = document.createElement("button");
     const operateButton = document.createElement("button");
 
-    addButton.textContent = "add";
-    subtractButton.textContent = "subtract";
-    multiplyButton.textContent = "multiply";
-    divideButton.textContent = "divide";
-    operateButton.textContent = "operate";
+    addButton.textContent = "+";
+    subtractButton.textContent = "-";
+    multiplyButton.textContent = "*";
+    divideButton.textContent = "/";
+    operateButton.textContent = "=";
 
     const inputContainer = document.querySelector(".input-container");
     inputContainer.appendChild(addButton);
