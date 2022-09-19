@@ -51,25 +51,45 @@ function displayNumber() {
         clearEverything();
         //set equalsPressed to false
         equalsPressed = false;
+
+        /*removed temporarily
         //clear display
         clearDisplay();
+        */
     }
     //get and store "display" div in display variable
     const display = document.querySelector(".display");
     //append text context of button (which is a number) to globalValue1 if there is no operator
     //else append it to globalValue2
     if ((globalOperator === "")) {
+        //if text content of this is "." and globalValue1 already has "."
+        //return without doing anything
+        if (this.textContent === "." && globalValue1.includes(".")) {
+            return;
+        }
         globalValue1 += this.textContent;
     } else {
+        //if text content of this is "." and globalValue2 already has "."
+        //return without doing anything
+        if (this.textContent === "." && globalValue2.includes(".")) {
+            return;
+        }
         globalValue2 += this.textContent;
     }
 
-    //if globalValue2 is not empty, clear display
-    if (globalValue2 !== "") {
+    //if globalValue2 is not empty and globalValue2 is not longer than 1 length, clear display
+    if (globalValue2 !== "" && !(globalValue2.length > 1)) {
         clearDisplay();
     }
-     //append text content of button (which is a number) to current text content
-    display.textContent += this.textContent;
+    //create and store display text + this text content in appendedText
+    let appendedText = 0 + display.textContent + this.textContent;
+    //display text with . if no leading zero
+    if (appendedText.includes(".") && !(+appendedText + "").includes(".")) {
+        display.textContent = +(appendedText) + ".";
+    } else {
+     //else append text content of button (which is a number) to current text content
+    display.textContent = +(appendedText) + "";
+    }
     
 }
 
@@ -180,6 +200,8 @@ function generateInputButtons() {
 
     //generate "." button  and store it in variable dotButton
     const dotButton = document.createElement("button");
+    //set text content of dotButton to "."
+    dotButton.textContent = ".";
     //add on click event listener to . button to add decimal and display number
     dotButton.addEventListener("click", displayNumber)
     //append "." button to "input-container" div
