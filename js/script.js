@@ -30,6 +30,19 @@ function divide(value1, value2) {
     return value1 / value2;
 }
 
+function inverseSign() {
+    //if globalOperator is empty, inverse globalValue1
+    if (globalOperator === "") {
+        globalValue1 = -globalValue1;
+    } else {
+    //else inverse globalValue2
+        globalValue2 = -globalValue2;
+    }
+
+    //set display text content to its inverse
+    document.querySelector(".display").textContent = -(document.querySelector(".display").textContent) + "";
+
+}
 function operate(operator, value1, value2) {
     // return value1 (operator) value2
     //ex if operator = +, return value1 + value2
@@ -197,6 +210,15 @@ function generateInputButtons() {
         //append button to "input-container" div
         document.querySelector(".input-container").appendChild(button);
     }
+
+    //generate "+/-" button and store it in inverseSignButton
+    const inverseSignButton = document.createElement("button");
+    //set text content of inverseSignButton to "+/-"
+    inverseSignButton.textContent = "+ / -"
+    //add onclick event listener to inverseButton to inverse number
+    inverseSignButton.addEventListener("click", inverseSign);
+    //append inverseButton to "input-container" div
+    document.querySelector(".input-container").appendChild(inverseSignButton);
 
     //generate "." button  and store it in variable dotButton
     const dotButton = document.createElement("button");
