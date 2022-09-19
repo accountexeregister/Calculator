@@ -49,7 +49,7 @@ function inverseSign() {
             return;
         }
         */
-       
+
         globalValue2 = -globalValue2;
     }
 
@@ -169,6 +169,27 @@ function displayOperator() {
 
 }
 
+function applyPercent() {
+    //initialise num variable
+    let num;
+    //if globalOperator is empty, divide globalValue1 by 100
+    if (globalOperator === "") {
+        globalValue1 = globalValue1 / 100;
+        globalValue1 = roundOff(globalValue1);
+        //set num variable to hold globalValue1
+        num = globalValue1;
+    } else {
+    //else inverse globalValue2
+        globalValue2 = globalValue2 / 100;
+        globalValue2 = roundOff(globalValue2);
+        //set num variable to hold globalValue2
+        num = globalValue2
+    }
+
+    //display the number after percent is applied
+    document.querySelector(".display").textContent = num + "";
+}
+
 function roundOff(num) {
     //multiply the num by 10000000000
     num = num * 10000000000;
@@ -248,6 +269,15 @@ function generateInputButtons() {
     inverseSignButton.addEventListener("click", inverseSign);
     //append inverseButton to "input-container" div
     document.querySelector(".input-container").appendChild(inverseSignButton);
+
+    //generate "+/-" button and store it in inverseSignButton
+    const applyPercentButton = document.createElement("button");
+    //set text content of inverseSignButton to "+/-"
+    applyPercentButton.textContent = "%"
+    //add onclick event listener to inverseButton to inverse number
+    applyPercentButton.addEventListener("click", applyPercent);
+    //append inverseButton to "input-container" div
+    document.querySelector(".input-container").appendChild(applyPercentButton);
 
     //generate "." button  and store it in variable dotButton
     const dotButton = document.createElement("button");
