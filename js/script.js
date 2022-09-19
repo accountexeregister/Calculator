@@ -3,6 +3,9 @@ let globalValue1 = "";
 //create global variable globalValue2 to store second number
 let globalValue2 = "";
 
+//create global variable globalOperator to store operator
+let globalOperator = "";
+
 function add(value1, value2) {
     //return value1 + value2
     return +value1 + +value2;
@@ -41,8 +44,13 @@ function operate(operator, value1, value2) {
 function displayNumber() {
     //get and store "display" div in display variable
     const display = document.querySelector(".display");
-    //append text context of button (which is a number) to globalValue1
-    globalValue1 += this.textContent;
+    //append text context of button (which is a number) to globalValue1 if there is no operator
+    //else append it to globalValue2
+    if ((globalOperator === "")) {
+        globalValue1 += this.textContent;
+    } else {
+        globalValue2 += this.textContent;
+    }
     //append text content of button (which is a number) to current text content
     //of display
     display.textContent += this.textContent;
@@ -58,9 +66,21 @@ function clearDisplay() {
 function displayOperator() {
     //get and store "display" div in display variable
     const display = document.querySelector(".display");
+    //append text content of button (which is a operator) to globalOperator
+    globalOperator = this.textContent;
     //append text content of button (which is a operator) to current text content
     //of display
-    display.textContent += this.textContent;
+    display.textContent += " " + this.textContent + " ";
+}
+
+function displayOperation() {
+    //executes operate(globalOperator, globalValue1, globalValue2)
+    //and store it in variable result
+    let result = operate(globalOperator, +globalValue1, +globalValue2);
+    //clear display and set the text content of display to result
+    clearDisplay();
+    document.querySelector(".display").textContent = result;
+
 }
 function generateInputButtons() {
     //use loop to generate button from 0 to 9 digit
@@ -95,6 +115,8 @@ function generateInputButtons() {
     multiplyButton.addEventListener("click", displayOperator);
     divideButton.addEventListener("click", displayOperator);
     
+    //add event listener to "=" button that display operation
+    operateButton.addEventListener("click", displayOperation);
 
     //append buttons to "input-container" div
     const inputContainer = document.querySelector(".input-container");
