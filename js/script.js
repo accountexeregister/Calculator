@@ -249,6 +249,28 @@ function displayOperationEquals() {
     //set equalsPressed to true
     equalsPressed = true;
 }
+
+function backSpace() {
+    //store ".display" div in display variable
+    const display = document.querySelector(".display");
+    //if display text is 0, return without doing anything
+    if (display.textContent.trim() === "0") {
+        return;
+    }
+    //slice away the last digit of the display text 
+    display.textContent = display.textContent.slice(0, display.textContent.length - 1);
+    //if display text is empty, set it to 0
+    if (display.textContent === "") {
+        display.textContent = 0;
+    }
+    //if globalOperator is empty, set globalValue1 to display text
+    if (globalOperator === "") {
+        globalValue1 = display.textContent;
+    } else {
+    //else set globalValue2 to display text
+        globalValue2 = display.textContent;
+    }
+}
 function generateInputButtons() {
     //use loop to generate button from 0 to 9 digit
     for (let i = 0; i < 10; i++) {
@@ -270,14 +292,23 @@ function generateInputButtons() {
     //append inverseButton to "input-container" div
     document.querySelector(".input-container").appendChild(inverseSignButton);
 
-    //generate "+/-" button and store it in inverseSignButton
+    //generate "%" button and store it in applyPercentButton
     const applyPercentButton = document.createElement("button");
-    //set text content of inverseSignButton to "+/-"
+    //set text content of applyPercentButton to "%"
     applyPercentButton.textContent = "%"
-    //add onclick event listener to inverseButton to inverse number
+    //add onclick event listener to applyPercentButton to apply percent to number
     applyPercentButton.addEventListener("click", applyPercent);
-    //append inverseButton to "input-container" div
+    //append applyPercentButton to "input-container" div
     document.querySelector(".input-container").appendChild(applyPercentButton);
+
+    //generate "UNDO" button and store it in backSpaceButton
+    const backSpaceButton = document.createElement("button");
+    //set text content of backSpaceButton to "UNDO"
+    backSpaceButton.textContent = "UNDO"
+    //add onclick event listener to backSpaceButton to backspace digit
+    backSpaceButton.addEventListener("click", backSpace);
+    //append backSpaceButton to "input-container" div
+    document.querySelector(".input-container").appendChild(backSpaceButton);
 
     //generate "." button  and store it in variable dotButton
     const dotButton = document.createElement("button");
