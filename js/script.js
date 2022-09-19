@@ -1,5 +1,5 @@
 //create global variable globalValue1 to store first number
-let globalValue1 = "";
+let globalValue1 = "0";
 //create global variable globalValue2 to store second number
 let globalValue2 = "";
 
@@ -7,7 +7,8 @@ let globalValue2 = "";
 let globalOperator = "";
 
 //create global variable equalsPressed to store whether equals button has been pressed
-let equalsPressed = false;
+//set it to true
+let equalsPressed = true;
 
 function add(value1, value2) {
     //return value1 + value2
@@ -50,6 +51,8 @@ function displayNumber() {
         clearEverything();
         //set equalsPressed to false
         equalsPressed = false;
+        //clear display
+        clearDisplay();
     }
     //get and store "display" div in display variable
     const display = document.querySelector(".display");
@@ -78,12 +81,13 @@ function clearDisplay() {
 }
 
 function clearEverything() {
-    //reset globalValue1, globalValue2 and globalOperator
-    globalValue1 = "";
+    //reset globalValue1, globalValue2, globalOperator and equalsPressed to initial values
+    globalValue1 = "0";
     globalValue2 = "";
     globalOperator = "";
-    //clear display
-    clearDisplay();
+    equalsPressed = true;
+    //set display text to initial value (0)
+    document.querySelector(".display").textContent = globalValue1;
 }
 
 function displayOperator() {
@@ -173,6 +177,13 @@ function generateInputButtons() {
         //append button to "input-container" div
         document.querySelector(".input-container").appendChild(button);
     }
+
+    //generate "." button  and store it in variable dotButton
+    const dotButton = document.createElement("button");
+    //add on click event listener to . button to add decimal and display number
+    dotButton.addEventListener("click", displayNumber)
+    //append "." button to "input-container" div
+    document.querySelector(".input-container").appendChild(dotButton);
     //generate button for each function defined
     
 
@@ -205,6 +216,9 @@ function generateInputButtons() {
     inputContainer.appendChild(multiplyButton);
     inputContainer.appendChild(divideButton);
     inputContainer.appendChild(operateButton);
+
+    //set initial display text content to initial globalValue1 (0)
+    document.querySelector(".display").textContent = globalValue1;
 }
 
 function addClearButton() {
