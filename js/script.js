@@ -54,6 +54,14 @@ function clearDisplay() {
     //set display textContent to empty string
     display.textContent = "";
 }
+
+function displayOperator() {
+    //get and store "display" div in display variable
+    const display = document.querySelector(".display");
+    //append text content of button (which is a operator) to current text content
+    //of display
+    display.textContent += this.textContent;
+}
 function generateInputButtons() {
     //use loop to generate button from 0 to 9 digit
     for (let i = 0; i < 10; i++) {
@@ -66,8 +74,7 @@ function generateInputButtons() {
         document.querySelector(".input-container").appendChild(button);
     }
     //generate button for each function defined
-    //assign button text content to functions defined
-    //append buttons to "input-container" div
+    
 
     const addButton = document.createElement("button");
     const subtractButton = document.createElement("button");
@@ -75,12 +82,21 @@ function generateInputButtons() {
     const divideButton = document.createElement("button");
     const operateButton = document.createElement("button");
 
+    //assign button text content to functions defined
     addButton.textContent = "+";
     subtractButton.textContent = "-";
     multiplyButton.textContent = "*";
     divideButton.textContent = "/";
     operateButton.textContent = "=";
 
+    //add event listener to operator buttons that display operator 
+    addButton.addEventListener("click", displayOperator);
+    subtractButton.addEventListener("click", displayOperator);
+    multiplyButton.addEventListener("click", displayOperator);
+    divideButton.addEventListener("click", displayOperator);
+    
+
+    //append buttons to "input-container" div
     const inputContainer = document.querySelector(".input-container");
     inputContainer.appendChild(addButton);
     inputContainer.appendChild(subtractButton);
