@@ -33,9 +33,23 @@ function divide(value1, value2) {
 function inverseSign() {
     //if globalOperator is empty, inverse globalValue1
     if (globalOperator === "") {
+        /* temporarily removed
+        //if globalValue1 is empty, do nothing
+        if (!globalValue1) {
+            return;
+        }
+        */
         globalValue1 = -globalValue1;
     } else {
     //else inverse globalValue2
+        
+        /*temporarily removed
+        //if globalValue2 is empty, do nothing
+        if (!globalValue2) {
+            return;
+        }
+        */
+       
         globalValue2 = -globalValue2;
     }
 
@@ -70,6 +84,8 @@ function displayNumber() {
         clearDisplay();
         */
     }
+
+
     //get and store "display" div in display variable
     const display = document.querySelector(".display");
     //append text context of button (which is a number) to globalValue1 if there is no operator
@@ -86,6 +102,11 @@ function displayNumber() {
         //return without doing anything
         if (this.textContent === "." && globalValue2.includes(".")) {
             return;
+        }
+        //if globalValue1 equals globalValue2, clear display
+        if (globalValue2 === globalValue1) {
+            clearDisplay();
+            globalValue2 = "";
         }
         globalValue2 += this.textContent;
     }
@@ -134,6 +155,9 @@ function displayOperator() {
     if (globalOperator !== "") {
         displayOperation();
     }
+
+    //set globalValue2 = globalValue1
+    globalValue2 = globalValue1;
     //append text content of button (which is a operator) to globalOperator
     globalOperator = this.textContent;
     
@@ -161,6 +185,7 @@ function displayOperation() {
     }
     //initialise result variable
     let result;
+    /* temporarily removed
     //if globalValue2 is empty, execute operate(globalOperator, globalValue1, globalValue1)
     //and store it in variable result
     if (!globalValue2) {
@@ -170,6 +195,10 @@ function displayOperation() {
     //and store it in variable result
         result = operate(globalOperator, +globalValue1, +globalValue2);
     }
+    */
+    //executes operate(globalOperator, globalValue1, globalValue2)
+    //and store it in variable result
+        result = operate(globalOperator, +globalValue1, +globalValue2);
     //clear display 
     clearDisplay();
     //if result is infinity (result obtained by dividing by zero)
