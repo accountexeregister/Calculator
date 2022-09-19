@@ -6,7 +6,8 @@ let globalValue2 = "";
 //create global variable globalOperator to store operator
 let globalOperator = "";
 
-let isNotFirstOperation;
+//create global variable equalsPressed to store whether equals button has been pressed
+let equalsPressed = false;
 
 function add(value1, value2) {
     //return value1 + value2
@@ -44,6 +45,12 @@ function operate(operator, value1, value2) {
 }
 
 function displayNumber() {
+    //if equalsPressed is true, clear everything and restart
+    if (equalsPressed) {
+        clearEverything();
+        //set equalsPressed to false
+        equalsPressed = false;
+    }
     //get and store "display" div in display variable
     const display = document.querySelector(".display");
     //append text context of button (which is a number) to globalValue1 if there is no operator
@@ -80,6 +87,10 @@ function clearEverything() {
 }
 
 function displayOperator() {
+    //if equalsPressed is true, assign it false
+    if (equalsPressed) {
+        equalsPressed = false;
+    }
     //get and store "display" div in display variable
     const display = document.querySelector(".display");
     //if globalOperator is not empty, execute displayOperation()
@@ -144,6 +155,13 @@ function displayOperation() {
     globalValue2 = "";
 
 }
+
+function displayOperationEquals() {
+    //executes displayOperation
+    displayOperation();
+    //set equalsPressed to true
+    equalsPressed = true;
+}
 function generateInputButtons() {
     //use loop to generate button from 0 to 9 digit
     for (let i = 0; i < 10; i++) {
@@ -178,7 +196,7 @@ function generateInputButtons() {
     divideButton.addEventListener("click", displayOperator);
     
     //add event listener to "=" button that display operation
-    operateButton.addEventListener("click", displayOperation);
+    operateButton.addEventListener("click", displayOperationEquals);
 
     //append buttons to "input-container" div
     const inputContainer = document.querySelector(".input-container");
