@@ -33,12 +33,28 @@ function operate(operator, value1, value2) {
     }
 }
 
+function displayNumber() {
+    //get and store "display" div in display variable
+    const display = document.querySelector(".display");
+    //append text content of button (which is a number) to current text content
+    //of display
+    display.textContent += this.textContent;
+}
+
+function clearDisplay() {
+    //get and store "display" div in display variable
+    const display = document.querySelector(".display");
+    //set display textContent to empty string
+    display.textContent = "";
+}
 function generateInputButtons() {
     //use loop to generate button from 0 to 9 digit
     for (let i = 0; i < 10; i++) {
         const button = document.createElement("button");
         //assign button text content from 0 to 0 digit
         button.textContent = i;
+        //add on click event listener to button to display number clicked on display
+        button.addEventListener("click", displayNumber);
         //append button to "input-container" div
         document.querySelector(".input-container").appendChild(button);
     }
@@ -71,6 +87,8 @@ function addClearButton() {
     const clearButton = document.createElement("button");
     //set text content of clearButton to "clear"
     clearButton.textContent = "clear";
+    //add click event listener that clears all display content
+    clearButton.addEventListener("click", clearDisplay);
     //append clearButton to "input-container" div
     document.querySelector(".input-container").appendChild(clearButton);
 }
