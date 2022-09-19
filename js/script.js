@@ -6,6 +6,8 @@ let globalValue2 = "";
 //create global variable globalOperator to store operator
 let globalOperator = "";
 
+let isNotFirstOperation;
+
 function add(value1, value2) {
     //return value1 + value2
     return +value1 + +value2;
@@ -51,9 +53,14 @@ function displayNumber() {
     } else {
         globalValue2 += this.textContent;
     }
-    //append text content of button (which is a number) to current text content
-    //of display
+
+    //if globalValue2 is not empty, clear display
+    if (globalValue2 !== "") {
+        clearDisplay();
+    }
+     //append text content of button (which is a number) to current text content
     display.textContent += this.textContent;
+    
 }
 
 function clearDisplay() {
@@ -66,11 +73,19 @@ function clearDisplay() {
 function displayOperator() {
     //get and store "display" div in display variable
     const display = document.querySelector(".display");
+    //if globalOperator is not empty, execute displayOperation()
+    if (globalOperator !== "") {
+        displayOperation();
+    }
     //append text content of button (which is a operator) to globalOperator
     globalOperator = this.textContent;
+    
+    /*removed
     //append text content of button (which is a operator) to current text content
     //of display
     display.textContent += " " + this.textContent + " ";
+    */
+
 }
 
 function displayOperation() {
@@ -80,6 +95,14 @@ function displayOperation() {
     //clear display and set the text content of display to result
     clearDisplay();
     document.querySelector(".display").textContent = result;
+    //set globalOperator back to empty string
+    globalOperator = "";
+    //set isNotFirstOperation to true
+    isNotFirstOperation = true;
+    //set globalValue1 to result
+    globalValue1 = result;
+    //set globalValue2 back to empty
+    globalValue2 = "";
 
 }
 function generateInputButtons() {
