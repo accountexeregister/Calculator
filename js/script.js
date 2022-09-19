@@ -70,6 +70,15 @@ function clearDisplay() {
     display.textContent = "";
 }
 
+function clearEverything() {
+    //reset globalValue1, globalValue2 and globalOperator
+    globalValue1 = "";
+    globalValue2 = "";
+    globalOperator = "";
+    //clear display
+    clearDisplay();
+}
+
 function displayOperator() {
     //get and store "display" div in display variable
     const display = document.querySelector(".display");
@@ -97,6 +106,11 @@ function roundOff(num) {
     return num / 10000000000;
 }
 function displayOperation() {
+    //if either globalOperator, globalValue1 or globalValue2 is empty
+    //return without doing anything
+    if (!globalOperator || !globalValue1 || !globalValue2) {
+        return;
+    }
     //executes operate(globalOperator, globalValue1, globalValue2)
     //and store it in variable result
     let result = operate(globalOperator, +globalValue1, +globalValue2);
@@ -166,7 +180,7 @@ function addClearButton() {
     //set text content of clearButton to "clear"
     clearButton.textContent = "clear";
     //add click event listener that clears all display content
-    clearButton.addEventListener("click", clearDisplay);
+    clearButton.addEventListener("click", clearEverything);
     //append clearButton to "input-container" div
     document.querySelector(".input-container").appendChild(clearButton);
 }
