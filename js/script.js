@@ -315,76 +315,44 @@ function resetCurrentNumber() {
 }
 
 function generateInputButtons() {
-    //use loop to generate button from 0 to 9 digit
+    //use loop to get button from 0 to 9 digit
     for (let i = 0; i < 10; i++) {
-        const button = document.createElement("button");
-        //assign button text content from 0 to 0 digit
-        button.textContent = i;
+        const button = document.querySelector(".b" + i);
         //add on click event listener to button to display number clicked on display
         button.addEventListener("click", displayNumber);
-        //append button to "input-container" div
-        document.querySelector(".input-container").appendChild(button);
     }
 
-    //generate "+/-" button and store it in inverseSignButton
-    const inverseSignButton = document.createElement("button");
-    //set text content of inverseSignButton to "+/-"
-    inverseSignButton.textContent = "+ / -";
+    //get "+/-" button and store it in inverseSignButton
+    const inverseSignButton = document.querySelector(".inverse-sign");
     //add onclick event listener to inverseButton to inverse number
     inverseSignButton.addEventListener("click", inverseSign);
-    //append inverseButton to "input-container" div
-    document.querySelector(".input-container").appendChild(inverseSignButton);
 
-    //generate "%" button and store it in applyPercentButton
-    const applyPercentButton = document.createElement("button");
-    //set text content of applyPercentButton to "%"
-    applyPercentButton.textContent = "%";
+    //get "%" button and store it in applyPercentButton
+    const applyPercentButton = document.querySelector(".apply-percent");
     //add onclick event listener to applyPercentButton to apply percent to number
     applyPercentButton.addEventListener("click", applyPercent);
-    //append applyPercentButton to "input-container" div
-    document.querySelector(".input-container").appendChild(applyPercentButton);
 
-    //generate "UNDO" button and store it in backSpaceButton
-    const backSpaceButton = document.createElement("button");
-    //set text content of backSpaceButton to "UNDO"
-    backSpaceButton.textContent = "UNDO";
+    //get "UNDO" button and store it in backSpaceButton
+    const backSpaceButton = document.querySelector(".undo");
     //add onclick event listener to backSpaceButton to backspace digit
     backSpaceButton.addEventListener("click", backSpace);
-    //append backSpaceButton to "input-container" div
-    document.querySelector(".input-container").appendChild(backSpaceButton);
 
-    //generate "RESET NUM" button and store it in resetCurrentButton
-    const resetCurrentButton = document.createElement("button");
-    //set text content of resetCurrentButton to "RESET NUM"
-    resetCurrentButton.textContent = "RESET NUM";
+    //get "RESET NUM" button and store it in resetCurrentButton
+    const resetCurrentButton = document.querySelector(".reset");
     //add onclick event listener to resetCurrentButton to reset current number
     resetCurrentButton.addEventListener("click", resetCurrentNumber);
-    //append resetCurrentButton to "input-container" div
-    document.querySelector(".input-container").appendChild(resetCurrentButton);
 
-    //generate "." button  and store it in variable dotButton
-    const dotButton = document.createElement("button");
-    //set text content of dotButton to "."
-    dotButton.textContent = ".";
+    //get "." button  and store it in variable dotButton
+    const dotButton = document.querySelector(".dot");
     //add on click event listener to . button to add decimal and display number
     dotButton.addEventListener("click", displayNumber)
-    //append "." button to "input-container" div
-    document.querySelector(".input-container").appendChild(dotButton);
-    //generate button for each function defined
-    
-
-    const addButton = document.createElement("button");
-    const subtractButton = document.createElement("button");
-    const multiplyButton = document.createElement("button");
-    const divideButton = document.createElement("button");
-    const operateButton = document.createElement("button");
-
-    //assign button text content to functions defined
-    addButton.textContent = "+";
-    subtractButton.textContent = "-";
-    multiplyButton.textContent = "*";
-    divideButton.textContent = "/";
-    operateButton.textContent = "=";
+   
+    //get button for each function defined
+    const addButton = document.querySelector(".add");
+    const subtractButton = document.querySelector(".subtract");
+    const multiplyButton = document.querySelector(".multiply");
+    const divideButton = document.querySelector(".divide");
+    const operateButton = document.querySelector(".operate");
 
     //add event listener to operator buttons that display operator 
     addButton.addEventListener("click", displayOperator);
@@ -395,27 +363,15 @@ function generateInputButtons() {
     //add event listener to "=" button that display operation
     operateButton.addEventListener("click", displayOperationEquals);
 
-    //append buttons to "input-container" div
-    const inputContainer = document.querySelector(".input-container");
-    inputContainer.appendChild(addButton);
-    inputContainer.appendChild(subtractButton);
-    inputContainer.appendChild(multiplyButton);
-    inputContainer.appendChild(divideButton);
-    inputContainer.appendChild(operateButton);
-
     //set initial display text content to initial globalValue1 (0)
     document.querySelector(".display").textContent = globalValue1;
 }
 
 function addClearButton() {
-    //create clear button and store it in variable "clearButton"
-    const clearButton = document.createElement("button");
-    //set text content of clearButton to "clear"
-    clearButton.textContent = "clear";
+    //get clear button and store it in variable "clearButton"
+    const clearButton = document.querySelector(".clear");
     //add click event listener that clears all display content
     clearButton.addEventListener("click", clearEverything);
-    //append clearButton to "input-container" div
-    document.querySelector(".input-container").appendChild(clearButton);
 }
 
 generateInputButtons();
