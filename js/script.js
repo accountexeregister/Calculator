@@ -117,12 +117,21 @@ function displayNumber() {
     }
     //create and store display text + this text content in appendedText
     let appendedText = 0 + display.textContent + this.textContent;
-    //display text with . if no leading zero
-    if (appendedText.includes(".") && !(+appendedText + "").includes(".")) {
+    //create and store display text + this text content without leading 0 in appendedTextNoZero
+    let appendedTextNoZero = display.textContent + this.textContent;
+    //display text with . if no leading zero and last character is "."
+    if (appendedText.includes(".") && !(+appendedText + "").includes(".") && appendedText.charAt(appendedText.length - 1) === ".") {
         display.textContent = +(appendedText) + ".";
     } else {
-     //else append text content of button (which is a number) to current text content
-    display.textContent = +(appendedText) + "";
+       
+        //if appendedText does not have "." append text content of button (which is a number) to current text content
+        if (!appendedText.includes(".")) {
+            display.textContent = +(appendedText) + "";
+        } else {
+            //else set display text to appendedTextNoZero
+            display.textContent = appendedTextNoZero;
+        }
+        
     }
     
 }
