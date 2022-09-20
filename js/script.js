@@ -315,6 +315,7 @@ function resetCurrentNumber() {
 }
 
 function generateInputButtons() {
+
     //use loop to get button from 0 to 9 digit
     for (let i = 0; i < 10; i++) {
         const button = document.querySelector(".b" + i);
@@ -363,10 +364,22 @@ function generateInputButtons() {
     //add event listener to "=" button that display operation
     operateButton.addEventListener("click", displayOperationEquals);
 
+    //add keyboard support to all buttons
+    window.addEventListener("keydown", executeButton);
     //set initial display text content to initial globalValue1 (0)
     document.querySelector(".display").textContent = globalValue1;
 }
 
+function executeButton(event) {
+    //gets the button with same keycode as event and store it in variable buttonPressed
+    const buttonPressed = document.querySelector(`button[data-key="${event.keyCode}"]`);
+    //if buttonPressed does not exist, return
+    if (!buttonPressed) return;
+    //create a simulated event of clicking the button and store it in variable eventSimulated
+    let eventSimulated = new Event("click");
+    //execute the function of the button using event created
+    buttonPressed.dispatchEvent(eventSimulated);
+}
 function addClearButton() {
     //get clear button and store it in variable "clearButton"
     const clearButton = document.querySelector(".clear");
