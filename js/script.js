@@ -244,6 +244,10 @@ function displayOperation() {
 }
 
 function displayOperationEquals() {
+    //if equals pressed, return
+    if (equalsPressed) {
+        return;
+    }
     //executes displayOperation
     displayOperation();
     //set equalsPressed to true
@@ -366,6 +370,9 @@ function generateInputButtons() {
 
     //add keyboard support to all buttons
     window.addEventListener("keydown", executeButton);
+    //set display text box to be same width as ".input-container"
+    document.querySelector(".display").style.width = 
+        `${document.querySelector(".input-container").clientWidth + 20}px`;
     //set initial display text content to initial globalValue1 (0)
     document.querySelector(".display").textContent = globalValue1;
 }

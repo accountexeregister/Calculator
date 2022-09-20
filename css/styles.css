@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*border: 15px solid rgba(0, 0, 0, 0.808);
+    */
+}
+
+.display {
+    /*
+    border-top: 6px solid rgba(0, 0, 0, 0.808);
+    border-left: 6px solid rgba(0, 0, 0, 0.808);
+    border-right: 6px solid rgba(0, 0, 0, 0.808);
+    */
+    border: 6px solid rgb(63, 94, 141);
+    text-align: right;
+    flex: 0;
+}
+
+.input-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+        "clear inverse-sign apply-percent divide"
+        "b7 b8 b9 multiplyArea"
+        "b4 b5 b6 subtractArea"
+        "b1 b2 b3 addArea"
+        "b0 b0 dotArea operate"
+        "undo undo reset reset";
+    border: 6px solid rgba(0, 0, 0, 0.808);
+    flex: 0;
+}
+
+
+button {
+    padding: 10px;
+}
+
+.number {
+    background-color: rgb(0, 255, 191);
+}
+
+.operation {
+    background-color: rgb(195, 0, 255);
+}
+
+.backtrack {
+    background-color: rgb(189, 88, 21);
+}
+
+.special {
+    background-color: rgb(0, 255, 13);
+}
+
+.b0 {
+    grid-area: b0;
+}
+
+.b1 {
+    grid-area: b1;
+}
+
+.b2 {
+    grid-area: b2;
+}
+
+.b3 {
+    grid-area: b3;
+}
+
+.b4 {
+    grid-area: b4;
+}
+
+.b5 {
+    grid-area: b5;
+}
+
+.b6 {
+    grid-area: b6;
+}
+
+.b7 {
+    grid-area: b7;
+}
+
+.b8 {
+    grid-area: b8;
+}
+
+.b9 {
+    grid-area: b9;
+}
+
+.inverse-sign {
+    grid-area: inverse-sign;
+}
+
+.apply-percent {
+    grid-area: apply-percent;
+}
+
+.undo {
+    grid-area: undo;
+}
+
+.reset {
+    grid-area: reset;
+}
+
+.dot {
+    grid-area: dotArea;
+}
+
+.add {
+    grid-area: addArea;
+}
+
+.subtract {
+    grid-area: subtractArea;
+}
+
+.multiply {
+    grid-area: multiplyArea;
+}
+
+.divide {
+    grid-area: divide;
+}
+
+.operate {
+    grid-area: operate;
+}
+
+.clear {
+    grid-area: clear;
+    background-color: rgb(255, 0, 34);
+    color: white;
+}
