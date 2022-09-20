@@ -334,6 +334,7 @@ function generateInputButtons() {
         const button = document.querySelector(".b" + i);
         //add on click event listener to button to display number clicked on display
         button.addEventListener("click", displayNumber);
+
     }
 
     //get "+/-" button and store it in inverseSignButton
@@ -377,6 +378,26 @@ function generateInputButtons() {
     //add event listener to "=" button that display operation
     operateButton.addEventListener("click", displayOperationEquals);
 
+    //add onclick event listener to operate function buttons to highlight text when selected
+    const operateButtons = document.querySelectorAll(".operation");
+    operateButtons.forEach(button => button.addEventListener("click", applySelectEffect))
+
+    //add onclick event listener to notOperation buttons to remove highlight text from operator buttons
+    //when pressed
+    const notOperationButtons = document.querySelectorAll(".notOperation");
+    notOperationButtons.forEach(button => button.addEventListener("click", removeSelectEffect))
+    
+    //add onclick event listener to operator buttons to apply hightlight text when pressed consecutively
+    const operatorButtons = document.querySelectorAll(".operation");
+    operatorButtons.forEach(button => button.addEventListener("click", removeAndApplySelect));
+
+    //get list of buttons and store it in variable buttonsList
+    const buttonsList = document.querySelectorAll("button");
+    //add onhover event listener to all buttons
+    buttonsList.forEach(button => button.addEventListener("mouseover", applyHoverEffect));
+    
+    //add offhover event listener to all buttons
+    buttonsList.forEach(button => button.addEventListener("mouseleave", removeHoverEffect));
     //add keyboard support to all buttons
     window.addEventListener("keydown", executeButton);
     //set display text box to be same width as ".input-container"
@@ -386,6 +407,33 @@ function generateInputButtons() {
     document.querySelector(".display").textContent = globalValue1;
 }
 
+function removeAndApplySelect() {
+    //if globalOperator is not empty
+    //remove select from previous operator button and apply it to current operator
+    //button that is pressed
+    if (globalOperator !== "") {
+    removeSelectEffect();
+    this.classList.add("select");
+    }
+
+}
+function removeSelectEffect() {
+    //remove "select" effect from operator buttons
+    const operatorButtons = document.querySelectorAll(".operation");
+    operatorButtons.forEach(button => button.classList.remove("select"));
+}
+function applySelectEffect() {
+    //add "select" class to the button
+    this.classList.add("select");
+}
+function removeHoverEffect() {
+    //remove "hovering" class from button
+    this.classList.remove("hovering");
+}
+function applyHoverEffect() {
+    //set add "hovering" class to the button
+    this.classList.add("hovering");
+}
 function executeButton(event) {
     //gets the button with same keycode as event and store it in variable buttonPressed
     const buttonPressed = document.querySelector(`button[data-key="${event.keyCode}"]`);
