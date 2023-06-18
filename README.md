@@ -1,4 +1,4 @@
-# odin-calculator
+# Calculator
 Calculator in progress.  
 Link to calculator: https://accountexeregister.github.io/odin-calculator/
 
